@@ -1,5 +1,8 @@
 import discord
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
@@ -16,4 +19,4 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = MyClient(intents=intents)
 
-client.run('MTAxMTY2NDc5OTQzNzk0Njk2MQ.GxCw6K.Z2-EfVFH-fxktjWEU-nFflbBPRyvG2q3Ct2FWU')
+client.run(TOKEN)
