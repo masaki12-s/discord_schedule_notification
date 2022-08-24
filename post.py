@@ -1,11 +1,19 @@
-from discordwebhook import discordwebhook
-from time import sleep
-import os
-from dotenv import load_dotenv
+import discord
 
-load_dotenv()
-print(os.getenv('webhookURL'))
-# discord = discordwebhook(url=URL,contents = "TEST")
-# sent_webhook = discord.execute()
-# sleep(10)
-# discord.delete(sent_webhook)
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print('Logged on as', self.user)
+
+    async def on_message(self, message):
+        # don't respond to ourselves
+        if message.author == self.user:
+            return
+
+        if message.content == 'ping':
+            await message.channel.send('pong')
+
+intents = discord.Intents.default()
+intents.message_content = True
+client = MyClient(intents=intents)
+
+client.run('token')
