@@ -47,7 +47,7 @@ class CalDAV:
                 elif 'DTEND;VALUE=DATE' in schedule[1].keys():
                     enddate = schedule[1]['DTEND;VALUE=DATE'][:8]
                 schedulelist.append((var,summary,(startdate,enddate)))
-            print(schedulelist)
+            return schedulelist
 
 if __name__=='__main__':
     c = CalDAV()
